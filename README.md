@@ -25,11 +25,11 @@ Por favor marca a continuación los ejericios que hayais terminado:
 
 ### 4.1 Node JS:
 
-- [ ] Crea el proyecto
-- [ ] Arranca el backend
-- [ ] Arranca el front end
-- [ ] Prueba el proyecto
-- [ ] Entiende el código del proyecto
+- [x] Crea el proyecto
+- [x] Arranca el backend
+- [x] Arranca el front end
+- [x] Prueba el proyecto
+- [x] Entiende el código del proyecto
 
 ### 4.2 Express JS I:
 

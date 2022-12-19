@@ -1,80 +1,84 @@
-# Ejercicio de Netflix
+# Ejercicio de Netflix Module-4: pair 3
+
+## Pair #3👩🏻‍💻:
+
+María Elena Arocena López: [@marocena26](https://github.com/marocena26)
+Úrsula Borrego Toledano: [@UrsulaBorrego](https://github.com/UrsulaBorrego)
 
 ### Cómo arrancar el backend
 
 En la raíz del proyecto:
 
-1. Ejecutar `npm install`.
-1. Ejecutar `npm start` o `npm run dev`.
-
-El backend se arrancará en http://localhost:4000
+1. Ejecutar npm install.
+2. Ejecutar npm start o npm run dev.
+   El backend se arrancará en http://localhost:4000
 
 ### Cómo ejecutar el frontend
 
 En la raíz del proyecto:
 
-1. Ejecutar `cd web`.
-1. Ejecutar `npm install`.
-1. Ejecutar `npm start` o `npm run dev`.
-1. Abrir la página http://localhost:3000
+1. Ejecutar cd web.
+2. Ejecutar npm install.
+3. Ejecutar npm start o npm run dev.
+4. Abrir la página http://localhost:3000
 
 ## ¿Cuántos ejercicios hemos hecho?
 
 Por favor marca a continuación los ejericios que hayais terminado:
 
-4.1 Node JS:
+### 4.1 Node JS:
 
-- [x] 1. Crea el proyecto
-- [ ] 2. Arranca el backend
-- [ ] 3. Arranca el front end
-- [ ] 4. Prueba el proyecto
-- [ ] 5. Entiende el código del proyecto
+- [x] Crea el proyecto
+- [x] Arranca el backend
+- [x] Arranca el front end
+- [x] Prueba el proyecto
+- [x] Entiende el código del proyecto
 
-4.2 Express JS I:
+### 4.2 Express JS I:
 
-- [ ] 1. Pedir todas las películas
-- [ ] 2. Filtrar por género
-- [ ] 3. Ordenar por nombre
+- [ ] Pedir todas las películas
+- [ ] Filtrar por género
+- [ ] Ordenar por nombre
 
-4.3 Express JS II:
+### 4.3 Express JS II:
 
-- [ ] 1. Servidor de estáticos para React
-- [ ] 2. Servidor de estáticos para las fotos
-- [ ] 3. Peticiones POST con body params
-- [ ] 4. Mantener logada a la usuaria
+- [ ] Servidor de estáticos para React
+- [ ] Servidor de estáticos para las fotos
+- [ ] Peticiones POST con body params
+- [ ] Mantener logada a la usuaria
 
-4.4 Express JS III:
+### 4.4 Express JS III:
 
-- [ ] 1. Obtener el id de la película a renderizar
-- [ ] 2. Obtener la película
-- [ ] 3. Renderiza una página cualquiera
-- [ ] 4. Renderiza la película
-- [ ] 5. Añade estilos
+- [ ] Obtener el id de la película a renderizar
+- [ ] Obtener la película
+- [ ] Renderiza una página cualquiera
+- [ ] Renderiza la película
+- [ ] Añade estilos
 
-4.5 Bases de datos I:
+### 4.5 Bases de datos I:
 
-- [ ] 1. Crear la base de datos
-- [ ] 2. Configura la base de datos en Node JS
-- [ ] 3. Haz un SELECT para obtener todas películas
-- [ ] 4. Mejora tu SELECT
-- [ ] 5. SELECT para el motor de plantillas
-- [ ] 6. Crear la tabla de usuarias
+- [ ] Crear la base de datos
+- [ ] Configura la base de datos en Node JS
+- [ ] Haz un SELECT para obtener todas películas
+- [ ] Mejora tu SELECT
+- [ ] SELECT para el motor de plantillas
+- [ ] Crear la tabla de usuarias
 
-4.6 Bases de datos I:
+### 4.6 Bases de datos I:
 
-- [ ] 1. Registro de nuevas usuarias en el front
-- [ ] 2. Registro de nuevas usuarias en el back
-- [ ] 3. Comprueba que no haya una usuaria registrada con el mismo email
-- [ ] 4. Actualiza el perfil de la usuaria en el front
-- [ ] 5. Cctualiza el perfil de la usuaria en el back
-- [ ] 6. Recupera los datos del perfil de la usuaria desde el front
-- [ ] 7. Recupera los datos del perfil de la usuaria desde el back
+- [ ] Registro de nuevas usuarias en el front
+- [ ] Registro de nuevas usuarias en el back
+- [ ] Comprueba que no haya una usuaria registrada con el mismo email
+- [ ] Actualiza el perfil de la usuaria en el front
+- [ ] Cctualiza el perfil de la usuaria en el back
+- [ ] Recupera los datos del perfil de la usuaria desde el front
+- [ ] Recupera los datos del perfil de la usuaria desde el back
 
-4.7 Bases de datos I:
+### 4.7 Bases de datos I:
 
-- [ ] 1. Pensar qué relación es
-- [ ] 2. Crear una relación N a N
-- [ ] 3. Crear el endpoint en el front
-- [ ] 4. Crear el endpoint en el back
-- [ ] 5. Obtener los ids de las películas de la usuaria
-- [ ] 6. Obtener todos los datos de las películas de la usuaria
+- [ ] Pensar qué relación es
+- [ ] Crear una relación N a N
+- [ ] Crear el endpoint en el front
+- [ ] Crear el endpoint en el back
+- [ ] Obtener los ids de las películas de la usuaria
+- [ ] Obtener todos los datos de las películas de la usuaria

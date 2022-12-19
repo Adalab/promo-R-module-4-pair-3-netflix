@@ -1,25 +1,26 @@
-# Ejercicio de Netflix Module-4: pair 3
+# Ejercicio de Netflix: Module-4
 
 ## Pair #3👩🏻‍💻:
 
-- María Elena Arocena López: [@marocena26](https://github.com/marocena26)
-- Úrsula Borrego Toledano: [@UrsulaBorrego](https://github.com/UrsulaBorrego)
+- **María Elena Arocena López**: [@marocena26](https://github.com/marocena26)
+- **Úrsula Borrego Toledano**: [@UrsulaBorrego](https://github.com/UrsulaBorrego)
 
 ### Cómo arrancar el backend
 
 En la raíz del proyecto:
 
-1. Ejecutar npm install.
-2. Ejecutar npm start o npm run dev.
-   El backend se arrancará en http://localhost:4000
+1. Ejecutar `npm install`.
+2. Ejecutar `npm start` o `npm run dev`.
+
+El backend se arrancará en http://localhost:4000
 
 ### Cómo ejecutar el frontend
 
 En la raíz del proyecto:
 
-1. Ejecutar cd web.
-2. Ejecutar npm install.
-3. Ejecutar npm start o npm run dev.
+1. Ejecutar `cd web`.
+2. Ejecutar `npm install`.
+3. Ejecutar `npm start` o `npm run dev`.
 4. Abrir la página http://localhost:3000
 
 ## ¿Cuántos ejercicios hemos hecho?

@@ -2,8 +2,8 @@
 
 ## Pair #3👩🏻‍💻:
 
-María Elena Arocena López: [@marocena26](https://github.com/marocena26)
-Úrsula Borrego Toledano: [@UrsulaBorrego](https://github.com/UrsulaBorrego)
+- María Elena Arocena López: [@marocena26](https://github.com/marocena26)
+- Úrsula Borrego Toledano: [@UrsulaBorrego](https://github.com/UrsulaBorrego)
 
 ### Cómo arrancar el backend
 

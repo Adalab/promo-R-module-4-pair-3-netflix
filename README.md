@@ -37,7 +37,7 @@ Por favor marca a continuación los ejericios que hayais terminado:
 
 ### 4.2 Express JS I:
 
-- [ ] Pedir todas las películas
+- [x] Pedir todas las películas
 - [ ] Filtrar por género
 - [ ] Ordenar por nombre
 

@@ -38,10 +38,10 @@ server.post("/login", (req, res) => {
     (user) =>
       user.email === req.body.email && user.password === req.body.password
   );
-  if (filteredUsers) {
+  if (filteredUsers !== "undefined") {
     const response = {
       success: true,
-      userId: "id_de_la_usuaria_encontrada",
+      userId: filteredUsers.id,
     };
     res.json(response);
   } else {
@@ -51,7 +51,6 @@ server.post("/login", (req, res) => {
     };
     res.json(response);
   }
-  // res.json(response);
 });
 
 // // Endpoint para gestionar los errores 404

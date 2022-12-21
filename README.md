@@ -38,14 +38,14 @@ Por favor marca a continuación los ejericios que hayais terminado:
 ### 4.2 Express JS I:
 
 - [x] Pedir todas las películas
-- [ ] Filtrar por género
-- [ ] Ordenar por nombre
+- [x] Filtrar por género
+- [x] Ordenar por nombre
 
 ### 4.3 Express JS II:
 
 - [x] Servidor de estáticos para React
-- [ ] Servidor de estáticos para las fotos
-- [ ] Peticiones POST con body params
+- [x] Servidor de estáticos para las fotos
+- [x] Peticiones POST con body params
 - [ ] Mantener logada a la usuaria
 
 ### 4.4 Express JS III:

@@ -44,3 +44,6 @@ server.get("/movies", (req, res) => {
 
 const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos
 server.use(express.static(staticServerPathWeb));
+
+const staticServerImages = "./src/public-movies-images"; // En esta carpeta ponemos los ficheros estáticos de las imágenes
+server.use(express.static(staticServerImages));

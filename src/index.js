@@ -21,11 +21,17 @@ server.listen(serverPort, () => {
 server.get("/movies", (req, res) => {
   const genderFilterParam = req.query.gender;
   //GUARDAMOS EL VALOR DEL GENERO
-  //const sortFilterParam = req.query.sort;
+  const sortFilterParam = req.query.sort;
   //GUARDAMOS EL VALOR DEL NOMBRE
-  const filteredMovies = movies.filter((movie) =>
-    movie.gender.includes(genderFilterParam)
-  );
+  const filteredMovies = movies
+    .filter((movie) => movie.gender.includes(genderFilterParam))
+    .sort((a, b) => {
+      if (sortFilterParam === "asc") {
+        return a.title > b.title ? 1 : b.title > a.title ? -1 : 0;
+      } else {
+        return b.title > a.title ? 1 : a.title > b.title ? -1 : 0;
+      }
+    });
   //FILTRAMOS LAS PELÍCULAS POR GÉNERO
   const response = {
     success: true,

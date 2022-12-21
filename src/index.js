@@ -19,15 +19,17 @@ server.listen(serverPort, () => {
 
 // Enpoint de movies para filtrar
 server.get("/movies", (req, res) => {
-  //const genderFilterParam = req.query.gender;
+  const genderFilterParam = req.query.gender;
   //GUARDAMOS EL VALOR DEL GENERO
   //const sortFilterParam = req.query.sort;
   //GUARDAMOS EL VALOR DEL NOMBRE
-  //const filteredMovies = movies.filter(movie => movie.gender.toLowerCase().includes(genderFilterParam.toLowerCase())
+  const filteredMovies = movies.filter((movie) =>
+    movie.gender.includes(genderFilterParam)
+  );
   //FILTRAMOS LAS PELÍCULAS POR GÉNERO
   const response = {
     success: true,
-    movies, //filteredMovies
+    movies: filteredMovies,
   };
   res.json(response);
 });

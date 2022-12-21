@@ -30,3 +30,17 @@ server.get("/movies", (req, res) => {
   };
   res.json(response);
 });
+
+// // Endpoint para gestionar los errores 404
+// server.get("*", (req, res) => {
+//   // Relativo a este directorio
+//   const notFoundFileRelativePath = "../src/public-react/404-not-found.html";
+//   const notFoundFileAbsolutePath = path.join(
+//     __dirname,
+//     notFoundFileRelativePath
+//   );
+//   res.status(404).sendFile(notFoundFileAbsolutePath);
+// });
+
+const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos
+server.use(express.static(staticServerPathWeb));

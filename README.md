@@ -43,7 +43,7 @@ Por favor marca a continuación los ejericios que hayais terminado:
 
 ### 4.3 Express JS II:
 
-- [ ] Servidor de estáticos para React
+- [x] Servidor de estáticos para React
 - [ ] Servidor de estáticos para las fotos
 - [ ] Peticiones POST con body params
 - [ ] Mantener logada a la usuaria

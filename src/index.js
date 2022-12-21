@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors"); //hace que nuestra API SEA accesible desde cualquier lugar.
 const movies = require("./data/movies.json");
+const users = require("./data/users.json");
 
 // Creamos el servidor
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.
@@ -16,7 +17,7 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-// Escribimos los endpoints que queramos
+// Enpoint de movies para filtrar
 server.get("/movies", (req, res) => {
   //const genderFilterParam = req.query.gender;
   //GUARDAMOS EL VALOR DEL GENERO
@@ -29,6 +30,28 @@ server.get("/movies", (req, res) => {
     movies, //filteredMovies
   };
   res.json(response);
+});
+
+// Enpoint de users para login
+server.post("/login", (req, res) => {
+  const filteredUsers = users.find(
+    (user) =>
+      user.email === req.body.email && user.password === req.body.password
+  );
+  if (filteredUsers) {
+    const response = {
+      success: true,
+      userId: "id_de_la_usuaria_encontrada",
+    };
+    res.json(response);
+  } else {
+    const response = {
+      success: false,
+      errorMessage: "Usuaria/o no encontrada/o",
+    };
+    res.json(response);
+  }
+  // res.json(response);
 });
 
 // // Endpoint para gestionar los errores 404

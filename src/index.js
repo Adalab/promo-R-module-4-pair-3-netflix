@@ -64,6 +64,16 @@ server.post("/login", (req, res) => {
   }
 });
 
+// Endpoint escuchar peticiones
+server.get("/movie/:movieId", (req, res) => {
+  console.log(req.params);
+  const foundMovie = movies.find(
+    (movie) => parseInt(movie.id) === parseInt(req.params.movieId)
+  );
+  console.log(foundMovie);
+  res.render("movie", foundMovie);
+});
+
 // // Endpoint para gestionar los errores 404
 // server.get("*", (req, res) => {
 //   // Relativo a este directorio

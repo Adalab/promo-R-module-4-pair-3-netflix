@@ -7,6 +7,9 @@ const users = require("./data/users.json");
 // Creamos el servidor
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.
 
+// Configuración motores de plantilla
+server.set("view engine", "ejs");
+
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.
 server.use(express.json()); //con esta línea entiende que las respuestas que me lleguen desde el servidor al cliente voy a poder utilizar formato del tipo json.

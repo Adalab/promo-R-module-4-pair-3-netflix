@@ -10,9 +10,10 @@
     />
   </head>
   <body>
-    <h1>"Hola mundo"</h1>
-    <p>Título: <%= title %></p>
-    <p>Género: <%= gender %></p>
-    <img src="<%= image %>" alt="" />
+    <li key="<%= id %>" class="card">
+      <img class="card__img" src="<%= image %>" />
+      <h3 class="card__title"><%= title %></h3>
+      <p class="card__description"><%= gender %></p>
+    </li>
   </body>
 </html>

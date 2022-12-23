@@ -81,6 +81,15 @@ server.get("/movie/:movieId", (req, res) => {
   res.render("movie", foundMovie);
 });
 
+// Endpoint para gestionar las bases de datos - todas las películas
+
+server.get("/movies", (req, res) => {
+  const query = db.prepare("");
+  const list = query.all();
+  res.json();
+  res.render();
+});
+
 // // Endpoint para gestionar los errores 404
 // server.get("*", (req, res) => {
 //   // Relativo a este directorio

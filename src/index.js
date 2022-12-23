@@ -8,14 +8,14 @@ const users = require("./data/users.json");
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.
 
 //Bases de datos
-const newDatabase = require("better-sqlite3");
+const Database = require("better-sqlite3");
 
 // Configuración motores de plantilla
 server.set("view engine", "ejs");
 
 //Bases de datos URL
 
-const db = newDatabase("./src/db/database.db", { verbose: console.log });
+const db = new Database("./src/db/database.db", { verbose: console.log });
 
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.
@@ -29,26 +29,27 @@ server.listen(serverPort, () => {
 
 // Enpoint de movies para filtrar
 server.get("/movies", (req, res) => {
-  const query = db.prepare("SELECT * FROM movies");
+  //FILTROS
+  const sortFilterParam = req.query.sort; //ALFABÉTICO
+  const genderFilterParam = req.query.gender; //GÉNERO
+
+  //GUARDAR TODAS LAS PELÍCULAS
+  const query = db.prepare(
+    `SELECT * FROM movies ORDER BY title ${sortFilterParam}`
+  );
   const list = query.all();
-  const genderFilterParam = req.query.gender;
   //GUARDAMOS EL VALOR DEL GENERO
-  const sortFilterParam = req.query.sort;
-  //GUARDAMOS EL VALOR DEL NOMBRE
-  const filteredMovies = movies
-    .filter((movie) => movie.gender.includes(genderFilterParam))
-    .sort((a, b) => {
-      if (sortFilterParam === "asc") {
-        return a.title > b.title ? 1 : b.title > a.title ? -1 : 0;
-      } else {
-        return b.title > a.title ? 1 : a.title > b.title ? -1 : 0;
-      }
-    });
-  //FILTRAMOS LAS PELÍCULAS POR GÉNERO
-  // const response = {
-  //   success: true,
-  //   movies: filteredMovies,
-  // };
+  const queryGender = db.prepare("SELECT * FROM movies WHERE gender = ?");
+
+  const filteredMoviesByGender = queryGender.all(genderFilterParam);
+  if (genderFilterParam !== "") {
+    const response = {
+      success: true,
+      movies: filteredMoviesByGender,
+    };
+    res.json(response);
+  }
+
   const response = {
     success: true,
     movies: list,

@@ -1,8 +1,6 @@
 // Importamos los dos módulos de NPM necesarios para trabajar
 const express = require("express");
 const cors = require("cors"); //hace que nuestra API SEA accesible desde cualquier lugar.
-const movies = require("./data/movies.json");
-const users = require("./data/users.json");
 
 // Creamos el servidor
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.

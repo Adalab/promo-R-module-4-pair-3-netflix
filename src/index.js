@@ -58,18 +58,21 @@ server.get("/movies", (req, res) => {
   res.json(response);
 });
 
-// Enpoint de users para login
+// Enpoint de users para login: obtenemos el usuario al rellenar el formulario
 server.post("/login", (req, res) => {
   const query = dbUser.prepare(
     "SELECT * FROM users WHERE email = ? AND password = ?"
   );
   const filteredUsers = query.get(req.body.email, req.body.password);
+
+  // Condición: si tengo datos me devuelve al ID y puedo ver a la usuaria
   if (filteredUsers !== "undefined") {
     const response = {
       success: true,
       userId: filteredUsers.id,
     };
     res.json(response);
+    // Revisar el ELSE: Cannot read property 'id' of undefined
   } else {
     const response = {
       success: false,
@@ -79,7 +82,7 @@ server.post("/login", (req, res) => {
   }
 });
 
-// Endpoint escuchar peticiones
+// Endpoint escuchar peticiones: obtenemos con el ID de la URL la página de cada película.
 server.get("/movie/:id", (req, res) => {
   console.log(req.params);
   const query = db.prepare("SELECT * FROM movies WHERE id=?");
@@ -87,17 +90,6 @@ server.get("/movie/:id", (req, res) => {
   console.log(foundMovie);
   res.render("movie", foundMovie);
 });
-
-// // Endpoint para gestionar los errores 404
-// server.get("*", (req, res) => {
-//   // Relativo a este directorio
-//   const notFoundFileRelativePath = "../src/public-react/404-not-found.html";
-//   const notFoundFileAbsolutePath = path.join(
-//     __dirname,
-//     notFoundFileRelativePath
-//   );
-//   res.status(404).sendFile(notFoundFileAbsolutePath);
-// });
 
 const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos
 server.use(express.static(staticServerPathWeb));

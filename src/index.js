@@ -8,7 +8,7 @@ const users = require("./data/users.json");
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.
 
 //Bases de datos
-const DataBase = require("better-sqlite3");
+const newDatabase = require("better-sqlite3");
 
 // Configuración motores de plantilla
 server.set("view engine", "ejs");
@@ -29,6 +29,8 @@ server.listen(serverPort, () => {
 
 // Enpoint de movies para filtrar
 server.get("/movies", (req, res) => {
+  const query = db.prepare("SELECT * FROM movies");
+  const list = query.all();
   const genderFilterParam = req.query.gender;
   //GUARDAMOS EL VALOR DEL GENERO
   const sortFilterParam = req.query.sort;
@@ -43,10 +45,15 @@ server.get("/movies", (req, res) => {
       }
     });
   //FILTRAMOS LAS PELÍCULAS POR GÉNERO
+  // const response = {
+  //   success: true,
+  //   movies: filteredMovies,
+  // };
   const response = {
     success: true,
-    movies: filteredMovies,
+    movies: list,
   };
+  //res.json(response);
   res.json(response);
 });
 
@@ -79,15 +86,6 @@ server.get("/movie/:movieId", (req, res) => {
   );
   console.log(foundMovie);
   res.render("movie", foundMovie);
-});
-
-// Endpoint para gestionar las bases de datos - todas las películas
-
-server.get("/movies", (req, res) => {
-  const query = db.prepare("");
-  const list = query.all();
-  res.json();
-  res.render();
 });
 
 // // Endpoint para gestionar los errores 404

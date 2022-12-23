@@ -16,6 +16,9 @@ server.set("view engine", "ejs");
 //Bases de datos URL
 
 const db = new Database("./src/db/database.db", { verbose: console.log });
+const dbUser = new Database("./src/db/databaseuser.db", {
+  verbose: console.log,
+});
 
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.
@@ -59,10 +62,11 @@ server.get("/movies", (req, res) => {
 
 // Enpoint de users para login
 server.post("/login", (req, res) => {
-  const filteredUsers = users.find(
-    (user) =>
-      user.email === req.body.email && user.password === req.body.password
-  );
+  const query = dbUser.prepare("SELECT * FROM users WHERE id = ?");
+  const listUsers = query.all();
+  //console.log(listUsers);
+  const filteredUsers = query.get(req.params.id);
+  console.log(filteredUsers);
   if (filteredUsers !== "undefined") {
     const response = {
       success: true,
@@ -76,6 +80,11 @@ server.post("/login", (req, res) => {
     };
     res.json(response);
   }
+  // const response = {
+  //   success: true,
+  //   movies: filteredUsers,
+  // };
+  // res.json(response);
 });
 
 // Endpoint escuchar peticiones

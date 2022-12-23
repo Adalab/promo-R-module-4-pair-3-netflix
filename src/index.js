@@ -7,8 +7,15 @@ const users = require("./data/users.json");
 // Creamos el servidor
 const server = express(); // a partir de server podré hacer uso de todas las funcionalidades de express.
 
+//Bases de datos
+const DataBase = require("better-sqlite3");
+
 // Configuración motores de plantilla
 server.set("view engine", "ejs");
+
+//Bases de datos URL
+
+const db = DataBase("./src/db/database.db", { verbose: console.log });
 
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.

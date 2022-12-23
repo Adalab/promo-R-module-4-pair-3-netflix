@@ -62,11 +62,10 @@ server.get("/movies", (req, res) => {
 
 // Enpoint de users para login
 server.post("/login", (req, res) => {
-  const query = dbUser.prepare("SELECT * FROM users WHERE id = ?");
-  const listUsers = query.all();
-  //console.log(listUsers);
-  const filteredUsers = query.get(req.params.id);
-  console.log(filteredUsers);
+  const query = dbUser.prepare(
+    "SELECT * FROM users WHERE email = ? AND password = ?"
+  );
+  const filteredUsers = query.get(req.body.email, req.body.password);
   if (filteredUsers !== "undefined") {
     const response = {
       success: true,
@@ -80,11 +79,6 @@ server.post("/login", (req, res) => {
     };
     res.json(response);
   }
-  // const response = {
-  //   success: true,
-  //   movies: filteredUsers,
-  // };
-  // res.json(response);
 });
 
 // Endpoint escuchar peticiones
@@ -92,9 +86,6 @@ server.get("/movie/:id", (req, res) => {
   console.log(req.params);
   const query = db.prepare("SELECT * FROM movies WHERE id=?");
   const foundMovie = query.get(req.params.id);
-  // const foundMovie = movies.find(
-  //   (movie) => parseInt(movie.id) === parseInt(req.params.movieId)
-  // );
   console.log(foundMovie);
   res.render("movie", foundMovie);
 });

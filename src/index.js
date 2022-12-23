@@ -54,7 +54,6 @@ server.get("/movies", (req, res) => {
     success: true,
     movies: list,
   };
-  //res.json(response);
   res.json(response);
 });
 
@@ -80,11 +79,13 @@ server.post("/login", (req, res) => {
 });
 
 // Endpoint escuchar peticiones
-server.get("/movie/:movieId", (req, res) => {
+server.get("/movie/:id", (req, res) => {
   console.log(req.params);
-  const foundMovie = movies.find(
-    (movie) => parseInt(movie.id) === parseInt(req.params.movieId)
-  );
+  const query = db.prepare("SELECT * FROM movies WHERE id=?");
+  const foundMovie = query.get(req.params.id);
+  // const foundMovie = movies.find(
+  //   (movie) => parseInt(movie.id) === parseInt(req.params.movieId)
+  // );
   console.log(foundMovie);
   res.render("movie", foundMovie);
 });

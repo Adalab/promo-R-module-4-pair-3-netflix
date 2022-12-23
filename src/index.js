@@ -15,7 +15,7 @@ server.set("view engine", "ejs");
 
 //Bases de datos URL
 
-const db = DataBase("./src/db/database.db", { verbose: console.log });
+const db = newDatabase("./src/db/database.db", { verbose: console.log });
 
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.

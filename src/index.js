@@ -66,7 +66,7 @@ server.post("/login", (req, res) => {
   const filteredUsers = query.get(req.body.email, req.body.password);
 
   // Condición: si tengo datos me devuelve al ID y puedo ver a la usuaria
-  if (filteredUsers !== "undefined") {
+  if (filteredUsers !== undefined) {
     const response = {
       success: true,
       userId: filteredUsers.id,

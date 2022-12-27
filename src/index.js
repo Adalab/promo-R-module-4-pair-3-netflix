@@ -14,9 +14,6 @@ server.set("view engine", "ejs");
 //Bases de datos URL
 
 const db = new Database("./src/db/database.db", { verbose: console.log });
-const dbUser = new Database("./src/db/databaseuser.db", {
-  verbose: console.log,
-});
 
 // Configuramos el servidor
 server.use(cors()); //server va a utilizar cors para que nuestro servidor pueda ser accesible desde cualquier cliente.
@@ -60,7 +57,7 @@ server.get("/movies", (req, res) => {
 
 // Enpoint de users para login: obtenemos el usuario al rellenar el formulario
 server.post("/login", (req, res) => {
-  const query = dbUser.prepare(
+  const query = db.prepare(
     "SELECT * FROM users WHERE email = ? AND password = ?"
   );
   const filteredUsers = query.get(req.body.email, req.body.password);
@@ -84,18 +81,63 @@ server.post("/login", (req, res) => {
 
 // Endpoint escuchar peticiones: obtenemos con el ID de la URL la página de cada película.
 server.get("/movie/:id", (req, res) => {
-  console.log(req.params);
   const query = db.prepare("SELECT * FROM movies WHERE id=?");
   const foundMovie = query.get(req.params.id);
   console.log(foundMovie);
   res.render("movie", foundMovie);
 });
 
+// Endpoint para recuperar datos del perfil de la usuaria
 server.get("/user/profile", (req, res) => {
   console.log(req.header("userId"));
-  const queryUser = dbUser.prepare("SELECT * FROM users WHERE id=?");
+  const queryUser = db.prepare("SELECT * FROM users WHERE id=?");
   const foundUsers = queryUser.get(req.header("userId"));
   res.json(foundUsers);
+});
+
+// Endpoint para actualizar el perfil de la usuaria   ////// NO ACTUALIZA A LA USUARIA
+server.post("/user/profile", (req, res) => {
+  console.log(req.header("userId"));
+  // const queryUser = db.prepare("SELECT * FROM users WHERE id=?");
+  const queryUpdate = db.prepare(
+    "UPDATE users SET email = ?, password = ?, name = ? WHERE id = ?"
+  );
+  const response = {
+    success: true,
+  };
+  const updateUser = queryUpdate.run(
+    req.body.email,
+    req.body.password,
+    req.body.name,
+    req.header("userId")
+  );
+  res.json(response);
+});
+
+// Endpoint para registro de nuevas usuarias  /////NO REGISTRA A LA USUARIA EN LA WEB (SÍ EN DB)
+server.post("/sing-up", (req, res) => {
+  const query = db.prepare(
+    "SELECT * FROM users WHERE email = ? AND password = ?"
+  );
+  const addNewUser = query.get(req.body.email, req.body.password);
+  const queryInsert = db.prepare(
+    "INSERT INTO users (email, password) VALUES (?,?)"
+  );
+  // Condición: si tengo datos me devuelve al ID y puedo ver a la usuaria
+  if (addNewUser) {
+    const response = {
+      success: false,
+      errorMessage: "Usuaria/o ya registrada/o",
+    };
+    res.json(response);
+  } else {
+    const insertNewUser = queryInsert.run(req.body.email, req.body.password);
+    const response = {
+      success: true,
+      userId: insertNewUser.addNewUser,
+    };
+    res.json(response);
+  }
 });
 
 const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos

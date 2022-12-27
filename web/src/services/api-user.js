@@ -48,8 +48,8 @@ const sendProfileToApi = (body) => {
 };
 
 const getProfileFromApi = (body) => {
-  // const queryParams = `user-id${body.id}`;
-  return fetch("//localhost:4000/user/profile", {
+  const queryParams = `user-id${body.id}`;
+  return fetch("//localhost:4000/user/profile?" + queryParams, {
     //// FALLA, NO COGE EL ID
     method: "GET",
     headers: {

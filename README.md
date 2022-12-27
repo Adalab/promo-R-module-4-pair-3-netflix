@@ -71,8 +71,8 @@ Por favor marca a continuación los ejericios que hayais terminado:
 - [ ] Registro de nuevas usuarias en el back
 - [ ] Comprueba que no haya una usuaria registrada con el mismo email
 - [x] Actualiza el perfil de la usuaria en el front
-- [ ] Cctualiza el perfil de la usuaria en el back
-- [ ] Recupera los datos del perfil de la usuaria desde el front
+- [ ] Actualiza el perfil de la usuaria en el back
+- [x] Recupera los datos del perfil de la usuaria desde el front
 - [ ] Recupera los datos del perfil de la usuaria desde el back
 
 ### 4.7 Bases de datos I:

@@ -91,6 +91,13 @@ server.get("/movie/:id", (req, res) => {
   res.render("movie", foundMovie);
 });
 
+server.get("/user/profile", (req, res) => {
+  console.log(req.header("userId"));
+  const queryUser = dbUser.prepare("SELECT * FROM users WHERE id=?");
+  const foundUsers = queryUser.get(req.header("userId"));
+  res.json(foundUsers);
+});
+
 const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos
 server.use(express.static(staticServerPathWeb));
 

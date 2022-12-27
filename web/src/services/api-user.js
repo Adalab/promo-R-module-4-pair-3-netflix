@@ -33,8 +33,7 @@ const sendSingUpToApi = (data) => {
 // profile
 
 const sendProfileToApi = (body) => {
-  const queryParams = `user-id${body.id}`;
-  return fetch("//localhost:4000/user/profile?" + queryParams, {
+  return fetch("//localhost:4000/user/profile", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -47,14 +46,12 @@ const sendProfileToApi = (body) => {
     });
 };
 
-const getProfileFromApi = (body) => {
-  // const queryParams = `user-id${body.id}`;
+const getProfileFromApi = (id) => {
   return fetch("//localhost:4000/user/profile", {
-    //// FALLA, NO COGE EL ID
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "user-id": body.id,
+      userId: id,
     },
   })
     .then((response) => response.json())

@@ -46,7 +46,7 @@ Por favor marca a continuación los ejericios que hayais terminado:
 - [x] Servidor de estáticos para React
 - [x] Servidor de estáticos para las fotos
 - [x] Peticiones POST con body params
-- [ ] Mantener logada a la usuaria
+- [x] Mantener logada a la usuaria
 
 ### 4.4 Express JS III:
 

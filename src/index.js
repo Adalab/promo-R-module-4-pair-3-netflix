@@ -95,7 +95,8 @@ server.get("/user/profile", (req, res) => {
   res.json(foundUsers);
 });
 
-// Endpoint para actualizar el perfil de la usuaria   ////// NO ACTUALIZA A LA USUARIA
+// Endpoint para actualizar el perfil de la usuaria
+
 server.post("/user/profile", (req, res) => {
   console.log(req.header("userId"));
   // const queryUser = db.prepare("SELECT * FROM users WHERE id=?");
@@ -114,7 +115,8 @@ server.post("/user/profile", (req, res) => {
   res.json(response);
 });
 
-// Endpoint para registro de nuevas usuarias  /////NO REGISTRA A LA USUARIA EN LA WEB (SÍ EN DB)
+// Endpoint para registro de nuevas usuarias
+
 server.post("/sing-up", (req, res) => {
   const query = db.prepare(
     "SELECT * FROM users WHERE email = ? AND password = ?"
@@ -124,6 +126,7 @@ server.post("/sing-up", (req, res) => {
     "INSERT INTO users (email, password) VALUES (?,?)"
   );
   // Condición: si tengo datos me devuelve al ID y puedo ver a la usuaria
+
   if (addNewUser) {
     const response = {
       success: false,

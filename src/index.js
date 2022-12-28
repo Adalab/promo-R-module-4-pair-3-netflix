@@ -12,7 +12,6 @@ const Database = require("better-sqlite3");
 server.set("view engine", "ejs");
 
 //Bases de datos URL
-
 const db = new Database("./src/db/database.db", { verbose: console.log });
 
 // Configuramos el servidor
@@ -25,18 +24,20 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
-// Enpoint de movies para filtrar
+// ------------------------ ENDPOINTS DE PELÍCULAS ------------------------ //
+
+// Enpoint de movies para FILTRAR
 server.get("/movies", (req, res) => {
-  //FILTROS
+  //filtros
   const sortFilterParam = req.query.sort; //ALFABÉTICO
   const genderFilterParam = req.query.gender; //GÉNERO
 
-  //GUARDAR TODAS LAS PELÍCULAS
+  //Gardamos las películas
   const query = db.prepare(
     `SELECT * FROM movies ORDER BY title ${sortFilterParam}`
   );
   const list = query.all();
-  //GUARDAMOS EL VALOR DEL GENERO
+  //Guardamos el valor del género
   const queryGender = db.prepare("SELECT * FROM movies WHERE gender = ?");
 
   const filteredMoviesByGender = queryGender.all(genderFilterParam);
@@ -55,7 +56,17 @@ server.get("/movies", (req, res) => {
   res.json(response);
 });
 
-// Enpoint de users para login: obtenemos el usuario al rellenar el formulario
+// Endpoint escuchar peticiones: obtenemos con el ID de la URL la página de cada película.
+server.get("/movie/:id", (req, res) => {
+  const query = db.prepare("SELECT * FROM movies WHERE id=?");
+  const foundMovie = query.get(req.params.id);
+  console.log(foundMovie);
+  res.render("movie", foundMovie);
+});
+
+// ------------------------ ENDPOINTS DE USUARIAS ------------------------ //
+
+// Enpoint de users para LOGIN: obtenemos el usuario al rellenar el formulario
 server.post("/login", (req, res) => {
   const query = db.prepare(
     "SELECT * FROM users WHERE email = ? AND password = ?"
@@ -79,15 +90,7 @@ server.post("/login", (req, res) => {
   }
 });
 
-// Endpoint escuchar peticiones: obtenemos con el ID de la URL la página de cada película.
-server.get("/movie/:id", (req, res) => {
-  const query = db.prepare("SELECT * FROM movies WHERE id=?");
-  const foundMovie = query.get(req.params.id);
-  console.log(foundMovie);
-  res.render("movie", foundMovie);
-});
-
-// Endpoint para recuperar datos del perfil de la usuaria
+// Endpoint para RECUPERAR DATOS del PERFIL de la usuaria
 server.get("/user/profile", (req, res) => {
   console.log(req.header("userId"));
   const queryUser = db.prepare("SELECT * FROM users WHERE id=?");
@@ -95,7 +98,8 @@ server.get("/user/profile", (req, res) => {
   res.json(foundUsers);
 });
 
-// Endpoint para actualizar el perfil de la usuaria   ////// NO ACTUALIZA A LA USUARIA
+// Endpoint para ACTUALIZAR el PERFIL de la usuaria
+
 server.post("/user/profile", (req, res) => {
   console.log(req.header("userId"));
   // const queryUser = db.prepare("SELECT * FROM users WHERE id=?");
@@ -114,7 +118,8 @@ server.post("/user/profile", (req, res) => {
   res.json(response);
 });
 
-// Endpoint para registro de nuevas usuarias  /////NO REGISTRA A LA USUARIA EN LA WEB (SÍ EN DB)
+// Endpoint para REGISTRO de nuevas usuarias
+
 server.post("/sing-up", (req, res) => {
   const query = db.prepare(
     "SELECT * FROM users WHERE email = ? AND password = ?"
@@ -124,6 +129,7 @@ server.post("/sing-up", (req, res) => {
     "INSERT INTO users (email, password) VALUES (?,?)"
   );
   // Condición: si tengo datos me devuelve al ID y puedo ver a la usuaria
+
   if (addNewUser) {
     const response = {
       success: false,
@@ -139,6 +145,38 @@ server.post("/sing-up", (req, res) => {
     res.json(response);
   }
 });
+
+// Endpoint para películas FAVORITAS de la usuaria
+
+server.get("/user/movies", (req, res) => {
+  // preparamos la query para obtener los movieIds
+  const movieIdsQuery = db.prepare(
+    "SELECT movieId FROM rel_movies_users WHERE userId = ?"
+  );
+  const movieIds = movieIdsQuery.all(req.header("userId"));
+  // obtenemos las interrogaciones separadas por comas
+  const moviesIdsQuestions = movieIds.map((id) => "?").join(", ");
+  console.log(moviesIdsQuestions);
+  // que nos devuelve '?, ?'
+  // preparamos la segunda query para obtener todos los datos de las películas
+  const moviesQuery = db.prepare(
+    `SELECT * FROM movies WHERE id IN (${moviesIdsQuestions})`
+  );
+  console.log(moviesQuery);
+  // convertimos el array de objetos de id anterior a un array de números
+  const moviesIdsNumbers = movieIds.map((movie) => movie.movieId); // que nos devuelve [1.0, 2.0]
+  console.log(moviesIdsNumbers);
+  // ejecutamos segunda la query
+  const movies = moviesQuery.all(moviesIdsNumbers);
+
+  // respondemos a la petición con
+  res.json({
+    success: true,
+    movies: movies,
+  });
+});
+
+// ------------------------ SERVIDORES ESTÁTICOS ------------------------ //
 
 const staticServerPathWeb = "./src/public-react"; // En esta carpeta ponemos los ficheros estáticos
 server.use(express.static(staticServerPathWeb));

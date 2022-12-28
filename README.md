@@ -68,18 +68,18 @@ Por favor marca a continuación los ejericios que hayais terminado:
 ### 4.6 Bases de datos I:
 
 - [x] Registro de nuevas usuarias en el front
-- [/] Registro de nuevas usuarias en el back
+- [x] Registro de nuevas usuarias en el back
 - [x] Comprueba que no haya una usuaria registrada con el mismo email
 - [x] Actualiza el perfil de la usuaria en el front
-- [ ] Actualiza el perfil de la usuaria en el back
+- [x] Actualiza el perfil de la usuaria en el back
 - [x] Recupera los datos del perfil de la usuaria desde el front
 - [x] Recupera los datos del perfil de la usuaria desde el back
 
 ### 4.7 Bases de datos I:
 
-- [ ] Pensar qué relación es
-- [ ] Crear una relación N a N
-- [ ] Crear el endpoint en el front
-- [ ] Crear el endpoint en el back
-- [ ] Obtener los ids de las películas de la usuaria
-- [ ] Obtener todos los datos de las películas de la usuaria
+- [x] Pensar qué relación es
+- [x] Crear una relación N a N
+- [x] Crear el endpoint en el front
+- [x] Crear el endpoint en el back
+- [x] Obtener los ids de las películas de la usuaria
+- [x] Obtener todos los datos de las películas de la usuaria
